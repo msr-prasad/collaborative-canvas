@@ -3,8 +3,30 @@ const SERVER_URL = window.location.hostname === 'localhost'
   ? 'http://localhost:3000'
   : 'https://collaborative-canvas-3l5p.onrender.com';
 
-window.__io = window.__io || io(SERVER_URL);
+// Initialize socket with connection options
+window.__io = window.__io || io(SERVER_URL, {
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1000,
+  timeout: 10000
+});
+
 const _socket = window.__io;
+
+// Connection status handling
+_socket.on('connect', () => {
+  console.log('Connected to server');
+  document.body.style.opacity = '1';
+});
+
+_socket.on('connect_error', (error) => {
+  console.error('Connection error:', error);
+  alert('Failed to connect to server. Please check your connection and refresh the page.');
+});
+
+_socket.on('disconnect', (reason) => {
+  console.log('Disconnected:', reason);
+  document.body.style.opacity = '0.5';
+});
 
 let identity = null;
 
