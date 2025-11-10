@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Collaborative Canvas</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header>
+    <h1>Collaborative Canvas</h1>
+    <div id="controls">
+      <label>Tool:
+        <select id="tool">
+          <option value="draw">Brush</option>
+          <option value="erase">Eraser</option>
+        </select>
+      </label>
+      <label>Color: <input id="color" type="color" /></label>
+      <label>Width: <input id="width" type="range" min="1" max="50" value="4" /></label>
+      <button id="undo">Undo</button>
+      <button id="redo">Redo</button>
+    </div>
+  </header>
+
+  <main>
+    <canvas id="canvas"></canvas>
+
+    <aside id="sidebar">
+      <h3>Online Users</h3>
+      <ul id="users"></ul>
+    </aside>
+
+    <div id="cursors"></div>
+  </main>
+
+  <footer>
+    <small>Open multiple tabs to test real-time sync.</small>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="socket.js"></script>
+  <script src="canvas.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
