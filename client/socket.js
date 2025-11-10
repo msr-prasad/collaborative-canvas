@@ -1,7 +1,5 @@
 // Avoid declaring a top-level `socket` identifier that can clash if script executes twice
-const SERVER_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3000'
-  : 'https://collaborative-canvas-server.onrender.com';
+const SERVER_URL = 'https://collaborative-canvas-server.onrender.com';
 
 // Initialize socket with connection options
 window.__io = window.__io || io(SERVER_URL, {
