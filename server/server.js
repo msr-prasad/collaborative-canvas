@@ -7,7 +7,13 @@ const state = require("./state");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
+const io = new Server(server, {
+  cors: {
+    origin: ["https://collaborative-canvas-3l5p.onrender.com", "http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 
 const PORT = process.env.PORT || 3000;
 

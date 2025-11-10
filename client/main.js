@@ -28,6 +28,11 @@ canvas.addEventListener("pointerdown", e => {
 
   const p = getPos(e);
 
+  if (!window.__LOCAL_USER) {
+    console.error('Not connected to server yet');
+    return;
+  }
+
   stroke = {
     id: crypto.randomUUID(),
     userId: window.__LOCAL_USER.userId,

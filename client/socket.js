@@ -1,16 +1,20 @@
 // Avoid declaring a top-level `socket` identifier that can clash if script executes twice
 const SERVER_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:3000'
-  : 'https://collaborative-canvas-3l5p.onrender.com';
+  : 'https://collaborative-canvas-server.onrender.com';
 
 // Initialize socket with connection options
 window.__io = window.__io || io(SERVER_URL, {
   reconnectionAttempts: 5,
   reconnectionDelay: 1000,
-  timeout: 10000
+  timeout: 10000,
+  transports: ['websocket', 'polling']
 });
 
 const _socket = window.__io;
+
+// Initialize local user as null
+window.__LOCAL_USER = null;
 
 // Connection status handling
 _socket.on('connect', () => {
